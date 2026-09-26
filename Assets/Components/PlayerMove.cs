@@ -6,14 +6,14 @@ public class PlayerMove : MonoBehaviour
 {
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Rigidbody2D rigidbody2D;
-    private float speed;
+    private float speed = 20;
+    private float friction = 4;
     InputAction moveAction;
     void Start()
     {
         rigidbody2D = gameObject.GetComponent<Rigidbody2D>();
-        rigidbody2D.linearDamping = 4;
+        rigidbody2D.linearDamping = friction;
         moveAction = InputSystem.actions.FindAction("Move");
-        speed = 20;
     }
 
     // Update is called once per frame
@@ -21,7 +21,7 @@ public class PlayerMove : MonoBehaviour
     {
         Vector2 moveValue = moveAction.ReadValue<Vector2>();
         rigidbody2D.AddForce(speed * Time.deltaTime * moveValue, ForceMode2D.Impulse);
-        Debug.Log(rigidbody2D.position);
+        //Debug.Log(rigidbody2D.position);
 
         /*
         Vector3 pos = transform.position;
